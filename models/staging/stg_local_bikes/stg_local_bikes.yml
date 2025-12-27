@@ -1,0 +1,118 @@
+version: 2
+models:
+  - name: stg_local_bikes__brands
+    description: "This model contains information about bike manufacturers"
+    columns:
+      - name: brand_id
+        tests:
+          - unique
+          - not_null
+      - name: brand_name
+
+  - name: stg_local_bikes__categories
+    description: "This model contains information about bike categories"
+    columns:
+      - name: category_id
+        tests:
+          - unique
+          - not_null
+      - name: category_name
+
+  - name: stg_local_bikes__customers
+    description: "This model contains information about customers"
+    columns:
+      - name: customer_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_first_name
+      - name: customer_last_name
+      - name: customer_phone
+      - name: customer_email
+      - name: customer_street
+      - name: customer_city
+      - name: customer_state
+      - name: customer_zip_code
+
+  - name: stg_local_bikes__order_items
+    description: "This model contains item-level information about each order"
+    columns:
+      - name: order_item_id
+        tests:
+          - unique
+          - not_null
+      - name: order_id
+      - name: item_id
+      - name: product_id
+      - name: quantity
+      - name: list_price
+      - name: discount
+
+  - name: stg_local_bikes__orders
+    description: "This model contains information about orders"
+    columns:
+      - name: order_id
+        tests:
+          - unique
+          - not_null
+      - name: customer_id
+      - name: store_id
+      - name: staff_id
+      - name: order_status
+      - name: order_date
+      - name: order_required_date
+      - name: order_shipped_date
+
+  - name: stg_local_bikes__products
+    description: "This model contains information about the products available in the Local Bikes inventory"
+    columns:
+      - name: product_id
+        tests:
+          - unique
+          - not_null
+      - name: brand_id
+      - name: category_id
+      - name: product_name
+      - name: model_year
+      - name: list_price
+
+  - name: stg_local_bikes__staffs
+    description: "This model contains information about Local Bikes employees"
+    columns:
+      - name: staff_id
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+      - name: manager_id
+      - name: staff_first_name
+      - name: staff_last_name
+      - name: staff_email
+      - name: staff_phone
+      - name: is_active_staff
+
+  - name: stg_local_bikes__stocks
+    description: "This model contains information about the inventory available at each Local Bikes store"
+    columns:
+      - name: stock_id
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+      - name: product_id
+      - name: quantity
+
+  - name: stg_local_bikes__stores
+    description: "This model contains information about about individual stores in the Local Bike network"
+    columns:
+      - name: store_id
+        tests:
+          - unique
+          - not_null
+      - name: store_name
+      - name: store_phone
+      - name: store_email
+      - name: store_street
+      - name: store_city
+      - name: store_state
+      - name: store_zip_code
