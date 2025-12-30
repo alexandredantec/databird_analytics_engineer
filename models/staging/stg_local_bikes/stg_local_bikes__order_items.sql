@@ -3,7 +3,7 @@ SELECT
   ,order_id
   ,item_id
   ,product_id
-  ,quantity
-  ,list_price
-  ,discount
+  ,COALESCE(quantity, 0) AS quantity
+  ,COALESCE(list_price, 0) AS list_price
+  ,COALESCE(discount, 0) AS discount
 FROM {{ source('local_bikes', 'order_items') }}
