@@ -1,29 +1,7 @@
 version: 2
 models:
-  - name: stg_local_bikes__brands
-    description: "This model contains information about bike manufacturers"
-    columns:
-      - name: brand_id
-        description: "{{ doc('stg_local_bikes__brands__brand_id') }}"
-        tests:
-          - unique
-          - not_null
-      - name: brand_name
-        description: "{{ doc('stg_local_bikes__brands__brand_name') }}"
-
-  - name: stg_local_bikes__categories
-    description: "This model contains information about bike categories"
-    columns:
-      - name: category_id
-        description: "{{ doc('stg_local_bikes__categories__category_id') }}"
-        tests:
-          - unique
-          - not_null
-      - name: category_name
-        description: "{{ doc('stg_local_bikes__categories__category_name') }}"
-
-  - name: stg_local_bikes__customers
-    description: "This model contains information about customers"
+  - name: int_local_bikes__customers
+    description: "Intermediate model that enriches customer data with derived fields"
     columns:
       - name: customer_id
         description: "{{ doc('stg_local_bikes__customers__customer_id') }}"
@@ -34,6 +12,8 @@ models:
         description: "{{ doc('stg_local_bikes__customers__customer_first_name') }}"
       - name: customer_last_name
         description: "{{ doc('stg_local_bikes__customers__customer_last_name') }}"
+      - name: customer_name
+        description: "{{ doc('int_local_bikes__customer_name') }}"
       - name: customer_phone
         description: "{{ doc('stg_local_bikes__customers__customer_phone') }}"
       - name: customer_email
@@ -47,8 +27,8 @@ models:
       - name: customer_zip_code
         description: "{{ doc('stg_local_bikes__customers__customer_zip_code') }}"
 
-  - name: stg_local_bikes__order_items
-    description: "This model contains item-level information about each order"
+  - name: int_local_bikes__order_items
+    description: "Intermediate model that enriches order items with calculated pricing fields"
     columns:
       - name: order_item_id
         description: "{{ doc('stg_local_bikes__order_items__order_item_id') }}"
@@ -67,9 +47,15 @@ models:
         description: "{{ doc('stg_local_bikes__order_items__list_price') }}"
       - name: discount
         description: "{{ doc('stg_local_bikes__order_items__discount') }}"
+      - name: customer_price
+        description: "{{ doc('int_local_bikes__customer_price') }}"
+      - name: total_price
+        description: "{{ doc('int_local_bikes__total_price') }}"
+      - name: total_customer_price
+        description: "{{ doc('int_local_bikes__total_customer_price') }}"
 
-  - name: stg_local_bikes__orders
-    description: "This model contains information about orders"
+  - name: int_local_bikes__orders
+    description: "Intermediate model for orders"
     columns:
       - name: order_id
         description: "{{ doc('stg_local_bikes__orders__order_id') }}"
@@ -91,8 +77,8 @@ models:
       - name: order_shipped_date
         description: "{{ doc('stg_local_bikes__orders__order_shipped_date') }}"
 
-  - name: stg_local_bikes__products
-    description: "This model contains information about the products available in the Local Bikes inventory"
+  - name: int_local_bikes__products
+    description: "Intermediate model for products enriched with brand and category names"
     columns:
       - name: product_id
         description: "{{ doc('stg_local_bikes__products__product_id') }}"
@@ -105,13 +91,17 @@ models:
         description: "{{ doc('stg_local_bikes__products__category_id') }}"
       - name: product_name
         description: "{{ doc('stg_local_bikes__products__product_name') }}"
+      - name: brand_name
+        description: "{{ doc('stg_local_bikes__brands__brand_name') }}"
+      - name: category_name
+        description: "{{ doc('stg_local_bikes__categories__category_name') }}"
       - name: model_year
         description: "{{ doc('stg_local_bikes__products__model_year') }}"
       - name: list_price
         description: "{{ doc('stg_local_bikes__products__list_price') }}"
 
-  - name: stg_local_bikes__staffs
-    description: "This model contains information about Local Bikes employees"
+  - name: int_local_bikes__staffs
+    description: "Intermediate model for staff members"
     columns:
       - name: staff_id
         description: "{{ doc('stg_local_bikes__staffs__staff_id') }}"
@@ -133,8 +123,8 @@ models:
       - name: is_active_staff
         description: "{{ doc('stg_local_bikes__staffs__is_active_staff') }}"
 
-  - name: stg_local_bikes__stocks
-    description: "This model contains information about the inventory available at each Local Bikes store"
+  - name: int_local_bikes__stocks
+    description: "Intermediate model for stock inventory"
     columns:
       - name: stock_id
         description: "{{ doc('stg_local_bikes__stocks__stock_id') }}"
@@ -148,8 +138,8 @@ models:
       - name: quantity
         description: "{{ doc('stg_local_bikes__stocks__quantity') }}"
 
-  - name: stg_local_bikes__stores
-    description: "This model contains information about about individual stores in the Local Bike network"
+  - name: int_local_bikes__stores
+    description: "Intermediate model for stores"
     columns:
       - name: store_id
         description: "{{ doc('stg_local_bikes__stores__store_id') }}"
