@@ -1,0 +1,151 @@
+version: 2
+models:
+  - name: mrt_local_bikes__customers
+    description: "Customer dimension with aggregated sales metrics and preferences"
+    columns:
+      - name: customer_id
+        description: "{{ doc('stg_local_bikes__customers__customer_id') }}"
+        tests:
+          - unique
+          - not_null
+      - name: customer_first_name
+        description: "{{ doc('stg_local_bikes__customers__customer_first_name') }}"
+      - name: customer_last_name
+        description: "{{ doc('stg_local_bikes__customers__customer_last_name') }}"
+      - name: customer_name
+        description: "{{ doc('int_local_bikes__customer_name') }}"
+      - name: customer_phone
+        description: "{{ doc('stg_local_bikes__customers__customer_phone') }}"
+      - name: customer_email
+        description: "{{ doc('stg_local_bikes__customers__customer_email') }}"
+      - name: customer_street
+        description: "{{ doc('stg_local_bikes__customers__customer_street') }}"
+      - name: customer_city
+        description: "{{ doc('stg_local_bikes__customers__customer_city') }}"
+      - name: customer_state
+        description: "{{ doc('stg_local_bikes__customers__customer_state') }}"
+      - name: customer_zip_code
+        description: "{{ doc('stg_local_bikes__customers__customer_zip_code') }}"
+      - name: total_orders
+        description: "{{ doc('mrt_local_bikes__customers__total_orders') }}"
+      - name: total_paid
+        description: "{{ doc('mrt_local_bikes__customers__total_paid') }}"
+      - name: average_order_value
+        description: "{{ doc('mrt_local_bikes__customers__average_order_value') }}"
+      - name: first_order_date
+        description: "{{ doc('mrt_local_bikes__customers__first_order_date') }}"
+      - name: last_order_date
+        description: "{{ doc('mrt_local_bikes__customers__last_order_date') }}"
+      - name: preferred_store
+        description: "{{ doc('mrt_local_bikes__customers__preferred_store') }}"
+
+  - name: mrt_local_bikes__products
+    description: "Product dimension with aggregated sales metrics and performance data"
+    columns:
+      - name: product_id
+        description: "{{ doc('stg_local_bikes__products__product_id') }}"
+        tests:
+          - unique
+          - not_null
+      - name: brand_id
+        description: "{{ doc('stg_local_bikes__products__brand_id') }}"
+      - name: category_id
+        description: "{{ doc('stg_local_bikes__products__category_id') }}"
+      - name: product_name
+        description: "{{ doc('stg_local_bikes__products__product_name') }}"
+      - name: brand_name
+        description: "{{ doc('stg_local_bikes__brands__brand_name') }}"
+      - name: category_name
+        description: "{{ doc('stg_local_bikes__categories__category_name') }}"
+      - name: model_year
+        description: "{{ doc('stg_local_bikes__products__model_year') }}"
+      - name: list_price
+        description: "{{ doc('stg_local_bikes__products__list_price') }}"
+      - name: total_orders
+        description: "{{ doc('mrt_local_bikes__products__total_orders') }}"
+      - name: total_customers
+        description: "{{ doc('mrt_local_bikes__products__total_customers') }}"
+      - name: total_sales_value
+        description: "{{ doc('mrt_local_bikes__products__total_sales_value') }}"
+      - name: total_volume_sold
+        description: "{{ doc('mrt_local_bikes__products__total_volume_sold') }}"
+      - name: total_discount_given
+        description: "{{ doc('mrt_local_bikes__products__total_discount_given') }}"
+      - name: first_order_date
+        description: "{{ doc('mrt_local_bikes__products__first_order_date') }}"
+      - name: last_order_date
+        description: "{{ doc('mrt_local_bikes__products__last_order_date') }}"
+
+  - name: mrt_local_bikes__staffs
+    description: "Staff dimension with aggregated sales performance metrics"
+    columns:
+      - name: staff_id
+        description: "{{ doc('stg_local_bikes__staffs__staff_id') }}"
+        tests:
+          - unique
+          - not_null
+      - name: store_id
+        description: "{{ doc('stg_local_bikes__staffs__store_id') }}"
+      - name: manager_id
+        description: "{{ doc('stg_local_bikes__staffs__manager_id') }}"
+      - name: staff_first_name
+        description: "{{ doc('stg_local_bikes__staffs__staff_first_name') }}"
+      - name: staff_last_name
+        description: "{{ doc('stg_local_bikes__staffs__staff_last_name') }}"
+      - name: staff_email
+        description: "{{ doc('stg_local_bikes__staffs__staff_email') }}"
+      - name: staff_phone
+        description: "{{ doc('stg_local_bikes__staffs__staff_phone') }}"
+      - name: is_active_staff
+        description: "{{ doc('stg_local_bikes__staffs__is_active_staff') }}"
+      - name: total_orders
+        description: "{{ doc('mrt_local_bikes__staffs__total_orders') }}"
+      - name: total_customers
+        description: "{{ doc('mrt_local_bikes__staffs__total_customers') }}"
+      - name: total_sales_value
+        description: "{{ doc('mrt_local_bikes__staffs__total_sales_value') }}"
+      - name: total_volume_sold
+        description: "{{ doc('mrt_local_bikes__staffs__total_volume_sold') }}"
+      - name: total_discount_given
+        description: "{{ doc('mrt_local_bikes__staffs__total_discount_given') }}"
+      - name: first_order_date
+        description: "{{ doc('mrt_local_bikes__staffs__first_order_date') }}"
+      - name: last_order_date
+        description: "{{ doc('mrt_local_bikes__staffs__last_order_date') }}"
+
+  - name: mrt_local_bikes__stores
+    description: "Store dimension with aggregated sales performance metrics"
+    columns:
+      - name: store_id
+        description: "{{ doc('stg_local_bikes__stores__store_id') }}"
+        tests:
+          - unique
+          - not_null
+      - name: store_name
+        description: "{{ doc('stg_local_bikes__stores__store_name') }}"
+      - name: store_phone
+        description: "{{ doc('stg_local_bikes__stores__store_phone') }}"
+      - name: store_email
+        description: "{{ doc('stg_local_bikes__stores__store_email') }}"
+      - name: store_street
+        description: "{{ doc('stg_local_bikes__stores__store_street') }}"
+      - name: store_city
+        description: "{{ doc('stg_local_bikes__stores__store_city') }}"
+      - name: store_state
+        description: "{{ doc('stg_local_bikes__stores__store_state') }}"
+      - name: store_zip_code
+        description: "{{ doc('stg_local_bikes__stores__store_zip_code') }}"
+      - name: total_orders
+        description: "{{ doc('mrt_local_bikes__stores__total_orders') }}"
+      - name: total_customers
+        description: "{{ doc('mrt_local_bikes__stores__total_customers') }}"
+      - name: total_sales_value
+        description: "{{ doc('mrt_local_bikes__stores__total_sales_value') }}"
+      - name: total_volume_sold
+        description: "{{ doc('mrt_local_bikes__stores__total_volume_sold') }}"
+      - name: total_discount_given
+        description: "{{ doc('mrt_local_bikes__stores__total_discount_given') }}"
+      - name: first_order_date
+        description: "{{ doc('mrt_local_bikes__stores__first_order_date') }}"
+      - name: last_order_date
+        description: "{{ doc('mrt_local_bikes__stores__last_order_date') }}"
